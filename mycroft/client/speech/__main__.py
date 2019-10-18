@@ -96,6 +96,8 @@ def handle_wake_up(event):
     """Wake up the the recognize loop."""
     loop.awaken()
 
+def handle_break_shit(event):
+    loop.boom()
 
 def handle_mic_mute(event):
     """Mute the listener system."""
@@ -175,6 +177,8 @@ def main():
     loop.on('recognizer_loop:wakeword', handle_wakeword)
     loop.on('recognizer_loop:record_end', handle_record_end)
     loop.on('recognizer_loop:no_internet', handle_no_internet)
+    
+    bus.on('kaboooom', handle_break_shit)
 
     # Register handlers for events on main Mycroft messagebus
     bus.on('open', handle_open)

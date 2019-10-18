@@ -100,6 +100,9 @@ class AudioProducer(Thread):
         self.state.running = False
         self.recognizer.stop()
 
+    def please_explode(self):
+        self.mic.stream.stop_stream()
+
 
 class AudioConsumer(Thread):
     """AudioConsumer
@@ -341,6 +344,9 @@ class RecognizerLoop(EventEmitter):
                                       stt, self.wakeup_recognizer,
                                       self.wakeword_recognizer)
         self.consumer.start()
+
+    def boom(self):
+        self.producer.please_explode()
 
     def stop(self):
         self.state.running = False
